@@ -2,20 +2,20 @@
 #include <abstract_shader.h>
 
 static const GLfloat tex_coord[][8] = {
-										{0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f}, //Normal
-										{0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f}, //Vert. flip
-										{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f}, //Horz. flip
-										{1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f}  //Horz. Vert. Flip
+                                        {0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f}, //Normal
+                                        {0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f}, //Vert. flip
+                                        {1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f}, //Horz. flip
+                                        {1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f}  //Horz. Vert. Flip
                                       };
                                        
 static const GLfloat vertex_coord[][8] = {
-											{-1.0f, +1.0f, +0.0f, +1.0f, +0.0f, +0.0f, -1.0f, +0.0f}, //Split Left Top
-											{+0.0f, +1.0f, +1.0f, +1.0f, +1.0f, +0.0f, +0.0f, +0.0f}, //Split Right Top
-											{-1.0f, +0.0f, +0.0f, +0.0f, +0.0f, -1.0f, -1.0f, -1.0f}, //Split Left Bottom
-											{+0.0f, +0.0f, +1.0f, +0.0f, +1.0f, -1.0f, +0.0f, -1.0f}, //Split Right Bottom
-											{-1.0f, +1.0f, +1.0f, +1.0f, +1.0f, -1.0f, -1.0f, -1.0f}, //Full Window
-											{-1.0f, +1.0f, +0.0f, +1.0f, +0.0f, -1.0f, -1.0f, -1.0f}, //Split Left
-											{+0.0f, +1.0f, +1.0f, +1.0f, +1.0f, -1.0f, +0.0f, -1.0f}  //Split Right
+                                            {-1.0f, +1.0f, +0.0f, +1.0f, +0.0f, +0.0f, -1.0f, +0.0f}, //Split Left Top
+                                            {+0.0f, +1.0f, +1.0f, +1.0f, +1.0f, +0.0f, +0.0f, +0.0f}, //Split Right Top
+                                            {-1.0f, +0.0f, +0.0f, +0.0f, +0.0f, -1.0f, -1.0f, -1.0f}, //Split Left Bottom
+                                            {+0.0f, +0.0f, +1.0f, +0.0f, +1.0f, -1.0f, +0.0f, -1.0f}, //Split Right Bottom
+                                            {-1.0f, +1.0f, +1.0f, +1.0f, +1.0f, -1.0f, -1.0f, -1.0f}, //Full Window
+                                            {-1.0f, +1.0f, +0.0f, +1.0f, +0.0f, -1.0f, -1.0f, -1.0f}, //Split Left
+                                            {+0.0f, +1.0f, +1.0f, +1.0f, +1.0f, -1.0f, +0.0f, -1.0f}  //Split Right
                                          };
 
 void Gl_img_helper::set_view_port(int x, int y, int w, int h)
@@ -144,8 +144,8 @@ void Gl_img_helper::load_yuy2_texture(uint8_t* data, int w, int h, GLuint tex_y,
 void Gl_img_helper::load_yuv420_texture(GLuint buff_id, int w, int h,
                     GLuint tex_y, GLuint tex_u, GLuint tex_v)
 {
-	int wh = (w >> 1);
-	int hh = (h >> 1);
+    int wh = (w >> 1);
+    int hh = (h >> 1);
     int u_offset = (w*h);
     int v_offset = u_offset+(u_offset>>2);
 

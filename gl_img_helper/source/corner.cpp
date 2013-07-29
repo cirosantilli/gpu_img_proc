@@ -7,10 +7,10 @@ Corner::Corner(int w, int h, QObject* parent)
     , fb_flag(true)
     , fbo_id(0)
     , fb_id(fbo_id)
-	, es(parent)
-	, mms(parent)
+    , es(parent)
+    , mms(parent)
     , sms(parent)
-	, nts(parent)
+    , nts(parent)
 {
     pipe.clear();
 }
@@ -21,16 +21,16 @@ Corner::Corner(int w, int h, GLuint& fbid, QObject* parent)
     , fb_flag(false)
     , fbo_id(0)
     , fb_id(fbid)
-	, es(parent)
-	, mms(parent)
+    , es(parent)
+    , mms(parent)
     , sms(parent)
-	, nts(parent)
+    , nts(parent)
 {
 }
 
 Corner::~Corner()
 {
-	pipe.clear();
+    pipe.clear();
     if (fb_flag)
     {
         Gl_img_helper::destroy_frame_buffer(1, &fb_id);
@@ -43,16 +43,16 @@ bool Corner::init()
     status = status && mms.init();
     status = status && sms.init();
     status = status && nts.init();
-    
-	if (status)
-	{
-		create_pipe();
+
+    if (status)
+    {
+	    create_pipe();
         if (fb_flag)
         {
-		    Gl_img_helper::create_frame_buffer(1, &fb_id);
+	        Gl_img_helper::create_frame_buffer(1, &fb_id);
         }
-	}
-	return status;
+    }
+    return status;
 }
 
 bool Corner::detect(GLuint source, GLuint dest)
@@ -63,11 +63,11 @@ bool Corner::detect(GLuint source, GLuint dest)
     Gl_img_helper::create_textures(width, height, GL_R16F, GL_RED, GL_FLOAT, 1, &tmp);
     Gl_img_helper::create_textures(width, height, GL_RGBA16F, GL_RGBA, GL_FLOAT, 2, tmp_rgba);
 
-    Gl_img_helper::Tex_info info[] = {{1, {source		}},
-                                  {1, {tmp_rgba[0]	}},
-                                  {1, {tmp_rgba[1]	}},
-                                  {1, {tmp			}},
-                                  {1, {dest			}}};
+    Gl_img_helper::Tex_info info[] =    {{1, {source        }},
+                                        {1, {tmp_rgba[0]    }},
+                                        {1, {tmp_rgba[1]    }},
+                                        {1, {tmp            }},
+                                        {1, {dest           }}};
 
     Gl_img_helper::set_view_port(0, 0, width, height);
 
@@ -94,20 +94,21 @@ void Corner::create_pipe()
 
 int Corner::threshold() const
 {
-	return nts.get_threshold();
+    return nts.get_threshold();
 }
 
 void Corner::set_threshold(int thresh)
 {
-	nts.set_threshold(thresh);
+    nts.set_threshold(thresh);
 }
 	
 void Corner::inc_threshold()
 {
-	nts.inc_threshold();
+    nts.inc_threshold();
 }
 
 void Corner::dec_threshold()
 {
-	nts.dec_threshold();
+    nts.dec_threshold();
 }
+
