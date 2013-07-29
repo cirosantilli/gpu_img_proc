@@ -70,7 +70,7 @@ bool Canny::edge_approx(GLuint source, GLuint dest)
                                          {1, {tmp[0]         }},
                                          {2, {tmp[1], tmp[2] }},
                                          {1, {tmp[0]         }},
-                                         {1, {dest      	 }}
+                                         {1, {dest           }}
                                      };
 
     Gl_img_helper::set_view_port(0, 0, width, height);

@@ -65,8 +65,8 @@ void Gl_img_helper::render_quad(int loc, Gl_img_helper::Disp_mode dmode, Gl_img_
 void Gl_img_helper::process_pipe(GLuint fbid, const QVector<Abstract_shader*>& pipe, Tex_info* info)
 {
     GLenum fbo_buffs[] = {
-							GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1,
-							GL_COLOR_ATTACHMENT2, GL_COLOR_ATTACHMENT3
+                            GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1,
+                            GL_COLOR_ATTACHMENT2, GL_COLOR_ATTACHMENT3
                          };
 
     for (int i = 0; i < pipe.size(); i++)
@@ -74,8 +74,7 @@ void Gl_img_helper::process_pipe(GLuint fbid, const QVector<Abstract_shader*>& p
         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fbid); 
         for (int j = 0; j < info[i+1].count; j++)
         {
-            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0+j,
-                GL_TEXTURE_2D, info[i+1].texture[j], 0);
+            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0+j, GL_TEXTURE_2D, info[i+1].texture[j], 0);
         }
 
         for (int j = 0; j < info[i].count; j++)
@@ -84,7 +83,7 @@ void Gl_img_helper::process_pipe(GLuint fbid, const QVector<Abstract_shader*>& p
             glBindTexture(GL_TEXTURE_2D, info[i].texture[j]);
         }
 
-		pipe[i]->render(Gl_img_helper::NORMAL, Gl_img_helper::FLIP_VERT, fbo_buffs, info[i+1].count);
+        pipe[i]->render(Gl_img_helper::NORMAL, Gl_img_helper::FLIP_VERT, fbo_buffs, info[i+1].count);
         
         for (int j = 0; j < info[i].count; j++)
         {
@@ -168,3 +167,4 @@ void Gl_img_helper::load_yuv420_texture(GLuint buff_id, int w, int h,
 
     glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0);
 }
+
