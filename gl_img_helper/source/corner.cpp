@@ -46,7 +46,7 @@ bool Corner::init()
 
     if (status)
     {
-	    create_pipe();
+        create_pipe();
         if (fb_flag)
         {
 	        Gl_img_helper::create_frame_buffer(1, &fb_id);
@@ -63,11 +63,13 @@ bool Corner::detect(GLuint source, GLuint dest)
     Gl_img_helper::create_textures(width, height, GL_R16F, GL_RED, GL_FLOAT, 1, &tmp);
     Gl_img_helper::create_textures(width, height, GL_RGBA16F, GL_RGBA, GL_FLOAT, 2, tmp_rgba);
 
-    Gl_img_helper::Tex_info info[] =    {{1, {source        }},
+    Gl_img_helper::Tex_info info[] = {
+                                        {1, {source        }},
                                         {1, {tmp_rgba[0]    }},
                                         {1, {tmp_rgba[1]    }},
                                         {1, {tmp            }},
-                                        {1, {dest           }}};
+                                        {1, {dest           }}
+                                     };
 
     Gl_img_helper::set_view_port(0, 0, width, height);
 

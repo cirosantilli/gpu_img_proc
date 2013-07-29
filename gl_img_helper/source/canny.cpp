@@ -45,10 +45,10 @@ bool Canny::init()
     status = status && bs.init();
     if (status)
     {
-	    create_pipe();
+        create_pipe();
         if (fb_flag)
         {
-	        Gl_img_helper::create_frame_buffer(1, &fb_id);
+            Gl_img_helper::create_frame_buffer(1, &fb_id);
         }
     }
     return status;
@@ -60,16 +60,18 @@ bool Canny::edge_approx(GLuint source, GLuint dest)
 
     if (0 == pipe.size())
     {
-	    return false;
+        return false;
     }
 
     Gl_img_helper::create_textures(width, height, GL_R16F, GL_RED, GL_FLOAT, 3, tmp);
 
-    Gl_img_helper::Tex_info info[] =    {{1, {source        }},
-                                        {1, {tmp[0]         }},
-                                        {2, {tmp[1], tmp[2] }},
-                                        {1, {tmp[0]         }},
-                                        {1, {dest      	    }}};
+    Gl_img_helper::Tex_info info[] = {
+                                         {1, {source         }},
+                                         {1, {tmp[0]         }},
+                                         {2, {tmp[1], tmp[2] }},
+                                         {1, {tmp[0]         }},
+                                         {1, {dest      	 }}
+                                     };
 
     Gl_img_helper::set_view_port(0, 0, width, height);
     Gl_img_helper::process_pipe(fb_id, pipe, info);
