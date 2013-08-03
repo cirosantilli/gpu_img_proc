@@ -73,7 +73,11 @@ bool Canny::edge_approx(GLuint source, GLuint dest)
                                          {1, {dest           }}
                                      };
 
-    Gl_img_helper::set_view_port(0, 0, width, height);
+    if (0 == pipe.size())
+    {
+        create_pipe();
+    }
+
     Gl_img_helper::process_pipe(fb_id, pipe, info);
     Gl_img_helper::destroy_textures(3, tmp);
 

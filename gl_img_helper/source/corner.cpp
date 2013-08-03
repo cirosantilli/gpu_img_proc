@@ -71,8 +71,6 @@ bool Corner::detect(GLuint source, GLuint dest)
                                         {1, {dest           }}
                                      };
 
-    Gl_img_helper::set_view_port(0, 0, width, height);
-
     if (0 == pipe.size())
     {
         create_pipe();

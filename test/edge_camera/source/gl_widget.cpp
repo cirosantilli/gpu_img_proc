@@ -84,19 +84,16 @@ void Gl_widget::paintGL()
 
     Gl_img_helper::load_yuy2_texture(yuv_data, v_width, v_height, y_tex, uv_tex);
                         
-	canny.edge_approx(y_tex, edge_tex);
-
-    Gl_img_helper::set_view_port(0, 0, width(), height());
+    canny.edge_approx(y_tex, edge_tex);
 
     is.display(Gl_img_helper::ST_LT, Gl_img_helper::NO_FLIP, edge_tex);
     ys.display(Gl_img_helper::ST_RT, Gl_img_helper::NO_FLIP, y_tex, uv_tex);
-
-    glFinish();	
+    glFlush();	
 }
 
-void Gl_widget::resizeGL(int width, int height)
+void Gl_widget::resizeGL(int w, int h)
 {
-	glViewport(0, 0, width, height);
+    Gl_img_helper::set_view_port(0, 0, w, h);
 }
 
 void Gl_widget::render_frame(uint8_t* data)

@@ -97,17 +97,16 @@ void Gl_widget::paintGL()
     }
 
     Gl_img_helper::load_yuy2_texture(yuv_data, v_width, v_height, y_tex, uv_tex);
-	corner.detect(y_tex, corner_tex);
-	
-    Gl_img_helper::set_view_port(0, 0, width(), height());
+    corner.detect(y_tex, corner_tex);
     
     ys.display(Gl_img_helper::NORMAL, Gl_img_helper::NO_FLIP, y_tex, uv_tex);
     display_corners();
+    glFlush();
 }
 
-void Gl_widget::resizeGL(int width, int height)
+void Gl_widget::resizeGL(int w, int h)
 {
-	glViewport(0, 0, width, height);
+    Gl_img_helper::set_view_port(0, 0, w, h);
 }
 
 void Gl_widget::render_frame(uint8_t* data)

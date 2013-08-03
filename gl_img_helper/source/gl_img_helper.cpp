@@ -69,8 +69,20 @@ void Gl_img_helper::process_pipe(GLuint fbid, const QVector<Abstract_shader*>& p
                             GL_COLOR_ATTACHMENT2, GL_COLOR_ATTACHMENT3
                          };
 
+    int p_params[4];
+    int width, height;
+    //Store viewport parameters
+    glGetIntegerv(GL_VIEWPORT, p_params);
+	
     for (int i = 0; i < pipe.size(); i++)
     {
+        //Get destination texture width, height and change the viewport
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, info[i+1].texture[0]);
+        glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &width);
+        glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &height);
+        glViewport(0, 0, width, height);
+		
         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, fbid); 
         for (int j = 0; j < info[i+1].count; j++)
         {
@@ -92,6 +104,8 @@ void Gl_img_helper::process_pipe(GLuint fbid, const QVector<Abstract_shader*>& p
         }
         glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
     }
+    //Apply old view port params
+    glViewport(p_params[0], p_params[1], p_params[2], p_params[3]);
 }
 
 void Gl_img_helper::create_frame_buffer(int count, GLuint* fb_id)
