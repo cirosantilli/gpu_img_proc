@@ -19,6 +19,18 @@ void Yuv420_shader::set_params()
     program.setUniformValue("texture_2", 2);
 }
 
+void Yuv420_shader::display(Gl_img_helper::Disp_mode dmode, Gl_img_helper::Flip_mode fmode, GLuint tex_y, GLuint tex_u, GLuint tex_v)
+{
+    glActiveTexture(GL_TEXTURE0); 
+    glBindTexture(GL_TEXTURE_2D, tex_y);
+    glActiveTexture(GL_TEXTURE1); 
+    glBindTexture(GL_TEXTURE_2D, tex_u);
+    glActiveTexture(GL_TEXTURE2); 
+    glBindTexture(GL_TEXTURE_2D, tex_v);
+    render(dmode, fmode);
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 const char Yuv420_shader::yuv420_fs[] =
 "#version 130\n"
 "in vec4 texCoord;\n"

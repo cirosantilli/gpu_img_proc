@@ -13,6 +13,8 @@ public:
     bool init();
     void set_params();
 
+    void display(Gl_img_helper::Disp_mode dmode, Gl_img_helper::Flip_mode fmode, GLuint tex_y, GLuint tex_u, GLuint tex_v);
+    
 protected:
     static const char yuv420_fs[];
 };
